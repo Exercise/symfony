@@ -167,7 +167,11 @@ class UrlGenerator implements UrlGeneratorInterface
                     $port = ':'.$this->context->getHttpsPort();
                 }
 
-                $url = $scheme.'://'.$this->context->getHost().$port.$url;
+                if ('localhost' == ($host = $this->context->getHost())) {
+                    $host = 'exercise.com';
+                }
+
+                $url = $scheme.'://'.$host.$port.$url;
             }
         }
 
